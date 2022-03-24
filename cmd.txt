@@ -1,0 +1,20 @@
+# compiled the file
+> NuSMV -int short.smv
+> go
+
+# pick the starting state of the simulation randomly.
+> pick_state -r
+> print_current_state -v
+
+Current state is 1.1
+...
+...
+
+# asks to build a three steps simulation by picking randomly.
+simulate -r -k 3
+********* Starting Simulation From State 1.1 *********
+show_traces -t
+..
+
+# showing randomly the next states of the steps.
+show_traces -v
