@@ -11,7 +11,7 @@ Current state is 1.1
 ...
 
 # asks to build a three steps simulation by picking randomly.
-> simulate -r -k 3
+simulate -r -k 3
 ********* Starting Simulation From State 1.1 *********
 > show_traces -t
 ..

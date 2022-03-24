@@ -1,0 +1,8 @@
+MODULE main
+VAR 
+	 L : {L1,L2,L3};
+ASSIGN 
+	init(L) := L1;
+	next(L) := case
+		   
+		   
