@@ -1,0 +1,10 @@
+MODULE main
+VAR 
+	L :{L1,L2};
+
+ASSIGN 
+	init(L):= L1;
+	next(L) := case
+			L = L1 : L2;
+			L = L2 : L1;
+		   esac;
