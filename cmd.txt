@@ -18,3 +18,8 @@ Current state is 1.1
 
 # showing randomly the next states of the steps.
 > show_traces -v
+
+
+
+# show all the states
+> print_reachable_states -v

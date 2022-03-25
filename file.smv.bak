@@ -7,5 +7,5 @@ ASSIGN
 	next(philosophe) := case
 				philosophe = pense : faim;
 				philosophe = faim : mange;
-				philosophe = mange : pense;
+				philosophe = mange : faim;
 				esac;

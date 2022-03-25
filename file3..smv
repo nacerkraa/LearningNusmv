@@ -1,7 +1,0 @@
-MODULE main
-
-VAR b:boolean;
-
-ASSIGN 
-	init(b):= FALSE;
-	next(b) := !b;

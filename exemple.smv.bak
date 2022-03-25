@@ -1,0 +1,24 @@
+MODULE main
+VAR
+ph_0 : process_philosopher (0, n, mutex, sems, states);
+ph_1 : process_philosopher (1, n, mutex, sems, states);
+ph_2 : process_philosopher (2, n, mutex, sems, states);
+ph_3 : process_philosopher (3, n, mutex, sems, states);
+mutex : boolean;
+sems : array 0 .. 3 of boolean;
+states : array 0 .. 3 of {THINKING, HUNGRY, EATING};
+ASSIGN
+init (mutex) := 1;
+DEFINE
+n := 4;
+SPEC --ppl eat (no starvation)
+(AG ((AF ph_0.eating) & (AF ph_1.eating) & (AF ph_2.eating) & (AF
+ph_3.eating)))
+SPEC --ppl eat with forks (mutual exclusion)
+(AG ((ph_0.eating -> (!ph_3.eating & !ph_1.eating)) &
+(ph_1.eating -> (!ph_0.eating & !ph_2.eating)) &
+(ph_2.eating -> (!ph_1.eating & !ph_3.eating)) &
+(ph_3.eating -> (!ph_2.eating & !ph_0.eating))))
+SPEC --ppl eat simultaneously
+(AG ((EF (ph_0.eating & ph_2.eating)) &
+(EF (ph_1.eating & ph_3.eating))))

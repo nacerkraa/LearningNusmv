@@ -1,0 +1,22 @@
+MODULE philosopher (i, n, mutex, sems, states)
+VAR
+insns : {thinking_, take_forks_, eating_, put_forks_};
+take_forks : {begin, down_mutex, state_hungry, if, state_eating,
+up_sem, up_mutex, down_sem, end};
+put_forks : {begin, down_mutex, state_thinking, left_if,
+left_state_eating, left_up_sem, right_if,
+right_state_eating,right_up_sem, up_mutex, end};
+ASSIGN
+...
+DEFINE
+left := (i + n - 1) mod n;
+right := (i + 1) mod n;
+leftleft := (left + n - 1) mod n;
+leftright := i;
+rightleft := i;
+rightright := (right + 1) mod n;
+eating := (insns = eating_);
+thinking := (insns = thinking_);
+hungry := (insns = take_forks_);
+FAIRNESS
+(AG (AF (running & mutex)))

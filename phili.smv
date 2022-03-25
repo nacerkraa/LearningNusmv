@@ -1,0 +1,30 @@
+MODULE main
+VAR 
+	fourchette_gouche : {disponible, indisponible};
+	fourchette_driote : {disponible, indisponible};
+	philosophe : {pense, faim, mange};
+	
+ASSIGN
+	init(philosophe) := pense;
+	init(fourchette_gouche) := {disponible, indisponible};
+	init(fourchette_driote) := {disponible, indisponible};
+	
+	next(philosophe) := case
+							(philosophe = pense): faim;
+							(philosophe = faim) & (fourchette_driote = disponible) & (fourchette_gouche = disponible): mange;
+							(philosophe = mange) : pense;
+							TRUE : {pense};
+					    esac;
+						
+	next(fourchette_driote) := case
+							(fourchette_driote = disponible) & (philosophe = faim) : indisponible;
+							(fourchette_driote = indisponible) & (philosophe = mange) : disponible;
+							TRUE : {disponible, indisponible};
+					    esac;
+						
+	next(fourchette_gouche) := case
+						(fourchette_gouche = disponible) & (philosophe = faim) : indisponible;
+						(fourchette_gouche = indisponible) & (philosophe = mange) : disponible;
+						TRUE : {disponible, indisponible};
+					esac;
+	

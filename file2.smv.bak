@@ -1,8 +1,18 @@
 MODULE main
 VAR 
-	b0 : boolean;
-	b1 : boolean;
-	b2 : boolean;
-	b3 : boolean;
+	location : {L1, L2};
+	x: 0 .. 100;
 ASSIGN
+	init(location) := L1;
+	init(x)    := 0;
+	next(location) := case 
+					(location = L1) & x<10 : L2;
+					(location = L2) : L1;
+					TRUE : location;
+					esac;
+	next(x) := case
+					(location = l1) : x;
+					(location = l2) & (x<100) : x+ 1;
+					TRUE : x;
+			   esac;
 	
