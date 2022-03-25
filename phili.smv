@@ -10,10 +10,10 @@ ASSIGN
 	init(fourchette_driote) := {disponible, indisponible};
 	
 	next(philosophe) := case
-							(philosophe = pense): faim;
+							(philosophe = pense): {pense, faim};
 							(philosophe = faim) & (fourchette_driote = disponible) & (fourchette_gouche = disponible): mange;
 							(philosophe = mange) : pense;
-							TRUE : {pense};
+							TRUE : philosophe;
 					    esac;
 						
 	next(fourchette_driote) := case
